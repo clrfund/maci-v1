@@ -2,7 +2,7 @@ import * as ethers from 'ethers'
 import * as fs from 'fs'
 import * as path from 'path'
 
-import { genProof, verifyProof, extractVk } from 'maci-circuits'
+import { genProof, verifyProof, extractVk } from '@clrfund/maci-circuits'
 import { hashLeftRight, hash3 } from 'maci-crypto'
 import { PrivKey, Keypair, VerifyingKey } from 'maci-domainobjs'
 import { genTallyResultCommitment } from 'maci-core'

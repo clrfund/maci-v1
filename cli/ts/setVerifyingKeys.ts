@@ -3,7 +3,7 @@ import * as ethers from 'ethers'
 import * as shelljs from 'shelljs'
 import * as path from 'path'
 
-import { extractVk } from 'maci-circuits'
+import { extractVk } from '@clrfund/maci-circuits'
 import { VerifyingKey } from 'maci-domainobjs'
 import { genProcessVkSig, genTallyVkSig, genSubsidyVkSig } from 'maci-core'
 import { parseArtifact, getDefaultSigner } from 'maci-contracts'

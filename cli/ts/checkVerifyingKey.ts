@@ -16,7 +16,7 @@ import {
 } from 'maci-contracts'
 
 
-import { extractVk } from 'maci-circuits'
+import { extractVk } from '@clrfund/maci-circuits'
 import { readJSONFile } from 'maci-common'
 import { VerifyingKey } from 'maci-domainobjs'
 
