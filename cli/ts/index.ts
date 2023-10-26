@@ -198,6 +198,16 @@ if (require.main === module) {
 }
 
 export {
+    verify,
+    proveOnChain,
+    genProofs,
+    mergeSignups,
+    mergeMessages,
+    publish,
+    setVerifyingKeys,
+    genMaciKeypair,
+    genMaciPubkey,
+    deployPoll,
     calcBinaryTreeDepthFromMaxLeaves,
     calcQuinTreeDepthFromMaxLeaves,
 }
