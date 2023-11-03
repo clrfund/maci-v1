@@ -18,13 +18,13 @@ invalidVote:
 constants:
   poll:
     duration: 300
-    intStateTreeDepth: 1
-    messageTreeDepth: 2
-    messageBatchDepth: 1
+    intStateTreeDepth: 2
+    messageTreeDepth: 8
+    messageBatchDepth: 2
   maci:
     maxUsers: 15
-    maxMessages: 25
-    maxVoteOptions: 25
+    maxMessages: 390625
+    maxVoteOptions: 125
     initialVoiceCredits: 1000
     signupDuration: 120
     votingDuration: 120
@@ -35,9 +35,13 @@ constants:
     tallyBatchSize: 4
     quadVoteTallyBatchSize: 4
     voteOptionsMaxLeafIndex: 3
-    stateTreeDepth: 10
-    messageTreeDepth:  2
-    voteOptionTreeDepth: 2
+    stateTreeDepth: 6
+    messageTreeDepth:  8
+    voteOptionTreeDepth: 3
+    processWitnessGenerator: 'processMessages_6-8-2-3_test'
+    tallyWitnessGenerator: 'tallyVotes_6-2-3_test'
+    processZkey: 'processmessages_6-8-2-3_final.zkey'
+    tallyZkey: 'tallyvotes_6-2-3_final.zkey'
     ivcpData: '0x0000000000000000000000000000000000000000000000000000000000000000'
   chain:
     privateKeysPath: './'

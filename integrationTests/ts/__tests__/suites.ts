@@ -67,8 +67,8 @@ const executeSuite = async (data: any, expect: any) => {
             ` -m ${config.constants.maci.messageTreeDepth}` +
             ` -v ${config.constants.maci.voteOptionTreeDepth}` +
             ` -b ${config.constants.poll.messageBatchDepth}` +
-            ` -p ./zkeys/ProcessMessages_10-2-1-2_test.0.zkey` +
-            ` -t ./zkeys/TallyVotes_10-1-2_test.0.zkey` +
+            ` -p ./zkeys/${config.constants.maci.processZkey}` +
+            ` -t ./zkeys/${config.constants.maci.tallyZkey}` +
             ` -k ${vkAddress}` +
             ` ${subsidyZkeyFilePath}`
 
@@ -238,10 +238,10 @@ const executeSuite = async (data: any, expect: any) => {
             ` -sk ${coordinatorKeypair.privKey.serialize()}` +
             ` -o ${pollId}` +
             ` -r ~/rapidsnark/build/prover` +
-            ` -wp ./zkeys/ProcessMessages_10-2-1-2_test` +
-            ` -wt ./zkeys/TallyVotes_10-1-2_test` +
-            ` -zp ./zkeys/ProcessMessages_10-2-1-2_test.0.zkey` +
-            ` -zt ./zkeys/TallyVotes_10-1-2_test.0.zkey` +
+            ` -wp ./zkeys/${config.constants.maci.processWitnessGenerator}` +
+            ` -wt ./zkeys/${config.constants.maci.tallyWitnessGenerator}` +
+            ` -zp ./zkeys/${config.constants.maci.processZkey}` +
+            ` -zt ./zkeys/${config.constants.maci.tallyZkey}` +
             ` -t tally.json` +
             ` -f proofs/` +
             ` ${genProofSubsidyArgument}`
@@ -251,7 +251,7 @@ const executeSuite = async (data: any, expect: any) => {
         // Validate generated proof file
         expect(JSON.stringify(tally.pollId)).toEqual(pollId)
         expectTally(
-            config.constants.maci.maxMessages,
+            config.constants.maci.maxVoteOptions,
             data.expectedTally,
             data.expectedSpentVoiceCredits,
             data.expectedTotalSpentVoiceCredits,

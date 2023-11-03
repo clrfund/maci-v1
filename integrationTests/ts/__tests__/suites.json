@@ -89,7 +89,7 @@
             "expectedSpentVoiceCredits": [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "expectedTotalSpentVoiceCredits": 4,
             "subsidy": {
-                "enabled": true,
+                "enabled": false,
                 "expectedSubsidy": [117636, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             }
         }
