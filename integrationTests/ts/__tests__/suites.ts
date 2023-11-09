@@ -284,6 +284,24 @@ const executeSuite = async (data: any, expect: any) => {
             ` -t tally.json` +
             ` ${subsidyResultFilePath}`
         execute(verifyCommand)
+
+        for(let i = 0; i < data.expectedTally.length; i++) {
+            if(data.expectedTally[i] > 0) {
+                const verifyResultCommand = `node build/index.js verifyTallyResult` +
+                  ` -x ${maciAddress}` +
+                  ` -o ${pollId}` +
+                  ` -v ${i}` +
+                  ` -t tally.json`
+                execute(verifyResultCommand)
+
+                const verifyVoiceCreditsCommand = `node build/index.js verifyPerVOSpentVoiceCredits` +
+                  ` -x ${maciAddress}` +
+                  ` -o ${pollId}` +
+                  ` -v ${i}` +
+                  ` -t tally.json`
+                execute(verifyVoiceCreditsCommand)
+            }
+        }
     }
     catch(e) {
         console.error(e)

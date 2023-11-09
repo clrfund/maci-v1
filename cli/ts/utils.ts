@@ -4,7 +4,7 @@ import * as prompt from 'prompt-async'
 prompt.colors = false
 prompt.message = ''
 
-import { SNARK_FIELD_SIZE } from 'maci-crypto'
+import { SNARK_FIELD_SIZE, hash5, IncrementalQuinTree } from 'maci-crypto'
 
 import {
     genJsonRpcDeployer,
@@ -156,6 +156,21 @@ const compareOnChainValue = (
     return true
 }
 
+const generateProof = (
+    index: number,
+    leaves: bigint[],
+    salt: bigint,
+    depth: number,
+): bigint[][] => {
+    const tree = new IncrementalQuinTree(depth, BigInt(0), 5, hash5)
+    for (const leaf of leaves) {
+        tree.insert(leaf)
+    }
+
+    const proof = tree.genMerklePath(index)
+    return proof.pathElements.map((x: bigint[]) => x.map((y) => y.toString()))
+}
+
 
 export {
     promptPwd,
@@ -172,4 +187,5 @@ export {
     delay,
     compareOnChainValue,
     isPathExist,
+    generateProof,
 }
