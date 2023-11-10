@@ -184,7 +184,7 @@ const verifyTallyResult = async (args: any) => {
     const proof = generateProof(
         voteOptionIndex,
         data.results.tally.map(x => BigInt(x)),
-        BigInt(data.result.salt),
+        BigInt(data.results.salt),
         voteOptionTreeDepth,
     )
 
@@ -204,7 +204,7 @@ const verifyTallyResult = async (args: any) => {
         return
     }
 
-    console.log('OK. finish verify')
+    console.log('OK. finish verifyTallyResult')
 
     return 
 }

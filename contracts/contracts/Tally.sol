@@ -207,7 +207,7 @@ contract Tally is
         uint256 _resultCommitment,
         uint256 _perVOSpentVoiceCreditsHash,
         uint256 _tallyCommitment
-    ) public view returns (bool) {
+    ) public pure returns (bool) {
         uint256[3] memory tally;
         tally[0] = _resultCommitment;
         tally[1] = hashLeftRight(_totalSpent, _totalSpentSalt);
@@ -237,7 +237,7 @@ contract Tally is
         uint256 _spentVoiceCreditsHash,
         uint256 _resultCommitment,
         uint256 _tallyCommitment
-    ) public view returns (bool) {
+    ) public pure returns (bool) {
         uint256 computedRoot = computeMerkleRootFromPath(
             _voteOptionTreeDepth,
             _voteOptionIndex,
@@ -274,7 +274,7 @@ contract Tally is
         uint256 _spentVoiceCreditsHash,
         uint256 _perVOSpentVoiceCreditsHash,
         uint256 _tallyCommitment
-    ) public view returns (bool) {
+    ) public pure returns (bool) {
         uint256 computedRoot = computeMerkleRootFromPath(
             _voteOptionTreeDepth,
             _voteOptionIndex,

@@ -204,6 +204,12 @@ const main = async () => {
     // Subcommand: verify
     configureSubparserForVerify(subparsers)
 
+    // Subcommand: verifyTallyResult
+    configureSubparserForVerifyTallyResult(subparsers)
+
+    // Subcommand: verifyPerVOSpentVoiceCredits
+    configureSubparserForVerifyPerVOSpentVoiceCredits(subparsers)
+
     // Subcommand: checkVerifyKey
     configureSubparserForCheckVerifyKey(subparsers)
 

@@ -44,6 +44,41 @@ constants:
     testMnemonic: "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
     url: "http://localhost:8545"
     port: 8545
+  circuit: micro
+  snark:
+    micro:
+      zkeys:
+        process: './zkeys/ProcessMessages_10-2-1-2_test.0.zkey'
+        tally: './zkeys/TallyVotes_10-1-2_test.0.zkey'
+        subsidy: './zkeys/SubsidyPerBatch_10-1-2_test.0.zkey'
+      witness:
+        default:
+           prover:
+              genProofsFlag: '-r'
+              path: '~/rapidsnark/build/prover'
+           process:
+              genProofsFlag: '-wp'
+              path: './zkeys/ProcessMessages_10-2-1-2_test'
+           tally:
+              genProofsFlag: '-wt'
+              path: './zkeys/TallyVotes_10-1-2_test'
+           subsidy:
+              genProofsFlag: '-ws'
+              path: './zkeys/SubsidyPerBatch_10-1-2_test'
+        arm:
+           prover:
+              genProofsFlag: ''
+              path: ''
+           process:
+              genProofsFlag: '-pw'
+              path: './zkeys/ProcessMessages_10-2-1-2_test_js/ProcessMessages_10-2-1-2_test.wasm'
+           tally:
+              genProofsFlag: '-tw'
+              path: './zkeys/TallyVotes_10-1-2_test_js/TallyVotes_10-1-2_test.wasm'
+           subsidy:
+              genProofsFlag: '-sw'
+              path: './zkeys/SubsidyPerBatch_10-1-2_test_js/SubsidyPerBatch_10-1-2_test.wasm'
+
 
   SG_DATA: '0x0000000000000000000000000000000000000000000000000000000000000000'
   QUINARY_HASH_LENGTH: 5

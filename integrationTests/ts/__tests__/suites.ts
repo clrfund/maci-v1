@@ -1,5 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs'
+import * as os from 'os'
+
 import {
     PubKey,
     PrivKey,
@@ -51,24 +53,24 @@ const executeSuite = async (data: any, expect: any) => {
         }
         const vkAddress = vkAddressMatch[1]
 
-        let subsidyZkeyFilePath
-        let subsidyWitnessCalculatorPath
-        let subsidyResultFilePath
+        const { circuit } = config.constants
+        const arch = os.arch().includes('arm')? 'arm': 'default'
+        const { zkeys } = config.constants.snark[circuit]
+        const witnessgen = config.constants.snark[circuit].witness[arch]
+        console.log('zkeys', zkeys)
+        console.log('witnessgen', witnessgen)
         const subsidyEnabled = data.subsidy && data.subsidy.enabled
-        subsidyEnabled ? subsidyZkeyFilePath = " --subsidy-zkey ./zkeys/SubsidyPerBatch_10-1-2_test.0.zkey" : subsidyZkeyFilePath = ''
-        subsidyEnabled ? subsidyWitnessCalculatorPath = " --subsidy-witnessgen ./zkeys/SubsidyPerBatch_10-1-2_test" : subsidyWitnessCalculatorPath = ''
-        subsidyEnabled ? subsidyResultFilePath = " --subsidy-file subsidy.json" : subsidyResultFilePath = ''
-        let genProofSubsidyArgument = subsidyResultFilePath + subsidyWitnessCalculatorPath + subsidyZkeyFilePath
+        const subsidyZkeyFilePath = subsidyEnabled ? ` --subsidy-zkey ${zkeys.subsidy}` : ''
+        const subsidyResultFilePath = subsidyEnabled ? ` --subsidy-file subsidy.json` : ''
         
-
         const setVerifyingKeysCommand = `node build/index.js setVerifyingKeys` +
             ` -s ${config.constants.maci.stateTreeDepth}` +
             ` -i ${config.constants.poll.intStateTreeDepth}` +
             ` -m ${config.constants.maci.messageTreeDepth}` +
             ` -v ${config.constants.maci.voteOptionTreeDepth}` +
             ` -b ${config.constants.poll.messageBatchDepth}` +
-            ` -p ./zkeys/ProcessMessages_10-2-1-2_test.0.zkey` +
-            ` -t ./zkeys/TallyVotes_10-1-2_test.0.zkey` +
+            ` -p ${zkeys.process}` +
+            ` -t ${zkeys.tally}` +
             ` -k ${vkAddress}` +
             ` ${subsidyZkeyFilePath}`
 
@@ -233,15 +235,20 @@ const executeSuite = async (data: any, expect: any) => {
         const removeOldProofs = `rm -rf tally.json subsidy.json proofs/`
         execute(removeOldProofs)
 
+        const genProofSubsidyArgument = subsidyEnabled?
+                  subsidyZkeyFilePath +
+                  ` ${subsidyResultFilePath}` +
+                  ` ${witnessgen.subsidy.genProofsFlag} ${witnessgen.subsidy.path}` : ''
+
         const genProofsCommand = `node build/index.js genProofs` +
             ` -x ${maciAddress}` +
             ` -sk ${coordinatorKeypair.privKey.serialize()}` +
             ` -o ${pollId}` +
-            ` -r ~/rapidsnark/build/prover` +
-            ` -wp ./zkeys/ProcessMessages_10-2-1-2_test` +
-            ` -wt ./zkeys/TallyVotes_10-1-2_test` +
-            ` -zp ./zkeys/ProcessMessages_10-2-1-2_test.0.zkey` +
-            ` -zt ./zkeys/TallyVotes_10-1-2_test.0.zkey` +
+            ` ${witnessgen.prover.genProofsFlag} ${witnessgen.prover.path}` +
+            ` ${witnessgen.process.genProofsFlag} ${witnessgen.process.path}` +
+            ` ${witnessgen.tally.genProofsFlag} ${witnessgen.tally.path}` +
+            ` -zp ${zkeys.process}` +
+            ` -zt ${zkeys.tally}` +
             ` -t tally.json` +
             ` -f proofs/` +
             ` ${genProofSubsidyArgument}`

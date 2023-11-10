@@ -19,7 +19,7 @@ import * as ethers from 'ethers'
 
 const configureSubparser = (subparsers: any) => {
     const parser = subparsers.addParser(
-        'verifyTallyResult',
+        'verifyPerVOSpentVoiceCredits',
         { addHelp: true },
     )
     parser.addArgument(
@@ -200,11 +200,11 @@ const verifyPerVOSpentVoiceCredits = async (args: any) => {
     )
 
     if (!isValid) {
-        console.error('Failed to verify per vote option spent  voice credits on chain')
+        console.error('Failed to verify per vote option spent voice credits on chain')
         return
     }
 
-    console.log('OK. finish verify')
+    console.log('OK. finish verifyPerVOSpentVoiceCredits')
 
     return 
 }

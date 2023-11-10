@@ -247,6 +247,19 @@ const verify = async (args: any) => {
         return
     }
 
+    // verify total spent voice credits on chain
+    const isValid = await tallyContract.verifySpentVoiceCredits(
+        data.totalSpentVoiceCredits.spent,
+        data.totalSpentVoiceCredits.salt,
+        newResultsCommitment,
+        newPerVOSpentVoiceCreditsCommitment,
+        onChainTallyCommitment
+    )
+    if (!isValid) {
+        console.error('Failed to verify total spent voice credits on chain')
+        return
+    }
+
     // ----------------------------------------------
     // verify subsidy result
 
@@ -295,18 +308,6 @@ const verify = async (args: any) => {
             return
         }
 
-        // verify total spent voice credits on chain
-        const isValid = await tallyContract.verifySpentVoiceCredits(
-            data.totalSpentVoiceCredits.spent,
-            data.totalSpentVoiceCredits.salt,
-            newResultsCommitment,
-            newPerVOSpentVoiceCreditsCommitment,
-            onChainTallyCommitment
-        )
-        if (!isValid) {
-            console.error('Failed to verify total spent voice credits on chain')
-            return
-        }
     }
 
     console.log('OK. finish verify')
