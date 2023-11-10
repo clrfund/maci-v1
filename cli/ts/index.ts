@@ -126,6 +126,16 @@ import {
 } from './verify'
 
 import {
+    verifyTallyResult,
+    configureSubparser as configureSubparserForVerifyTallyResult,
+} from './verifyTallyResult'
+
+import {
+    verifyPerVOSpentVoiceCredits,
+    configureSubparser as configureSubparserForVerifyPerVOSpentVoiceCredits,
+} from './verifyPerVOSpentVoiceCredits'
+
+import {
     checkVerifyingKey,
     configureSubparser as configureSubparserForCheckVerifyKey,
 } from './checkVerifyingKey'
@@ -194,6 +204,12 @@ const main = async () => {
     // Subcommand: verify
     configureSubparserForVerify(subparsers)
 
+    // Subcommand: verifyTallyResult
+    configureSubparserForVerifyTallyResult(subparsers)
+
+    // Subcommand: verifyPerVOSpentVoiceCredits
+    configureSubparserForVerifyPerVOSpentVoiceCredits(subparsers)
+
     // Subcommand: checkVerifyKey
     configureSubparserForCheckVerifyKey(subparsers)
 
@@ -236,6 +252,10 @@ const main = async () => {
         await proveOnChain(args)
     } else if (args.subcommand === 'verify') {
         await verify(args)
+    } else if (args.subcommand === 'verifyTallyResult') {
+        await verifyTallyResult(args)
+    } else if (args.subcommand === 'verifyPerVOSpentVoiceCredits') {
+        await verifyPerVOSpentVoiceCredits(args)
     } 
     else if (args.subcommand === 'checkVerifyingKey') {
         await checkVerifyingKey(args)
@@ -254,6 +274,8 @@ export {
     genMaciPubkey,
     proveOnChain,
     verify,
+    verifyTallyResult,
+    verifyPerVOSpentVoiceCredits,
     create,
     topup,
     checkVerifyingKey,

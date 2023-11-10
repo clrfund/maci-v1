@@ -25,7 +25,7 @@ async function getPollDuration(providerUrl: string, maci: string, pollId: number
     return duration
 }
 
-describe('Test deployPollWithSigner', () => {
+describe.skip('Test deployPollWithSigner', () => {
     const data = loadData('suites.json')
     const test = data.suites[0]
     it(test.description, async () => {

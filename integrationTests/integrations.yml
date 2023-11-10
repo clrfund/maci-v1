@@ -38,16 +38,47 @@ constants:
     stateTreeDepth: 6
     messageTreeDepth:  8
     voteOptionTreeDepth: 3
-    processWitnessGenerator: 'processMessages_6-8-2-3_test'
-    tallyWitnessGenerator: 'tallyVotes_6-2-3_test'
-    processZkey: 'processmessages_6-8-2-3_final.zkey'
-    tallyZkey: 'tallyvotes_6-2-3_final.zkey'
     ivcpData: '0x0000000000000000000000000000000000000000000000000000000000000000'
   chain:
     privateKeysPath: './'
     testMnemonic: "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
     url: "http://localhost:8545"
     port: 8545
+  circuit: micro
+  snark:
+    micro:
+      zkeys:
+        process: './zkeys/processmessages_6-8-2-3_final.zkey'
+        tally: './zkeys/tallyvotes_6-2-3_final.zkey'
+        subsidy: ''
+      witness:
+        default:
+           prover:
+              genProofsFlag: '-r'
+              path: '~/rapidsnark/build/prover'
+           process:
+              genProofsFlag: '-wp'
+              path: './zkeys/processMessages_6-8-2-3_test'
+           tally:
+              genProofsFlag: '-wt'
+              path: './zkeys/tallyVotes_6-2-3_test'
+           subsidy:
+              genProofsFlag: '-ws'
+              path: ''
+        arm:
+           prover:
+              genProofsFlag: ''
+              path: ''
+           process:
+              genProofsFlag: '-pw'
+              path: './zkeys/processmessages_6-8-2-3.wasm'
+           tally:
+              genProofsFlag: '-tw'
+              path: './zkeys/tallyvotes_6-2-3.wasm'
+           subsidy:
+              genProofsFlag: '-sw'
+              path: ''
+
 
   SG_DATA: '0x0000000000000000000000000000000000000000000000000000000000000000'
   QUINARY_HASH_LENGTH: 5
