@@ -55,12 +55,11 @@ const executeSuite = async (data: any, expect: any) => {
 
         const { circuit } = config.constants
         const arch = os.arch().includes('arm')? 'arm': 'default'
+        const isArm = arch === 'arm'
         const { zkeys } = config.constants.snark[circuit]
         const witnessgen = config.constants.snark[circuit].witness[arch]
-        console.log('zkeys', zkeys)
-        console.log('witnessgen', witnessgen)
         const subsidyEnabled = data.subsidy && data.subsidy.enabled
-        const subsidyZkeyFilePath = subsidyEnabled ? ` --subsidy-zkey ${zkeys.subsidy}` : ''
+        const subsidyZkeyFilePath = subsidyEnabled ? ` --subsidy-zkey "${zkeys.subsidy}"` : ''
         const subsidyResultFilePath = subsidyEnabled ? ` --subsidy-file subsidy.json` : ''
         
         const setVerifyingKeysCommand = `node build/index.js setVerifyingKeys` +
@@ -69,8 +68,8 @@ const executeSuite = async (data: any, expect: any) => {
             ` -m ${config.constants.maci.messageTreeDepth}` +
             ` -v ${config.constants.maci.voteOptionTreeDepth}` +
             ` -b ${config.constants.poll.messageBatchDepth}` +
-            ` -p ${zkeys.process}` +
-            ` -t ${zkeys.tally}` +
+            ` -p "${zkeys.process}"` +
+            ` -t "${zkeys.tally}"` +
             ` -k ${vkAddress}` +
             ` ${subsidyZkeyFilePath}`
 
@@ -238,17 +237,17 @@ const executeSuite = async (data: any, expect: any) => {
         const genProofSubsidyArgument = subsidyEnabled?
                   subsidyZkeyFilePath +
                   ` ${subsidyResultFilePath}` +
-                  ` ${witnessgen.subsidy.genProofsFlag} ${witnessgen.subsidy.path}` : ''
+                  (isArm? ' -sw ': ' -ws ') + `"${witnessgen.subsidy}"` : ''
 
         const genProofsCommand = `node build/index.js genProofs` +
             ` -x ${maciAddress}` +
             ` -sk ${coordinatorKeypair.privKey.serialize()}` +
             ` -o ${pollId}` +
-            ` ${witnessgen.prover.genProofsFlag} ${witnessgen.prover.path}` +
-            ` ${witnessgen.process.genProofsFlag} ${witnessgen.process.path}` +
-            ` ${witnessgen.tally.genProofsFlag} ${witnessgen.tally.path}` +
-            ` -zp ${zkeys.process}` +
-            ` -zt ${zkeys.tally}` +
+            (isArm? '': ` -r "${witnessgen.prover}"`) +
+            (isArm? ' -pw ': ' -wp ') + `"${witnessgen.process}"` +
+            (isArm? ' -tw ': ' -wt ') + `"${witnessgen.tally}"` +
+            ` -zp "${zkeys.process}"` +
+            ` -zt "${zkeys.tally}"` +
             ` -t tally.json` +
             ` -f proofs/` +
             ` ${genProofSubsidyArgument}`
