@@ -6,7 +6,7 @@ import {
     deployMessageProcessor,
     deployTally,
     deploySubsidy
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {
     PubKey,

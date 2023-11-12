@@ -53,33 +53,15 @@ constants:
         subsidy: ''
       witness:
         default:
-           prover:
-              genProofsFlag: '-r'
-              path: '~/rapidsnark/build/prover'
-           process:
-              genProofsFlag: '-wp'
-              path: './zkeys/processMessages_6-8-2-3_test'
-           tally:
-              genProofsFlag: '-wt'
-              path: './zkeys/tallyVotes_6-2-3_test'
-           subsidy:
-              genProofsFlag: '-ws'
-              path: ''
+           prover: '~/rapidsnark/build/prover'
+           process: './zkeys/processMessages_6-8-2-3_test'
+           tally: './zkeys/tallyVotes_6-2-3_test'
+           subsidy: ''
         arm:
-           prover:
-              genProofsFlag: ''
-              path: ''
-           process:
-              genProofsFlag: '-pw'
-              path: './zkeys/processmessages_6-8-2-3.wasm'
-           tally:
-              genProofsFlag: '-tw'
-              path: './zkeys/tallyvotes_6-2-3.wasm'
-           subsidy:
-              genProofsFlag: '-sw'
-              path: ''
-
-
+           prover: ''
+           process: './zkeys/processmessages_6-8-2-3.wasm'
+           tally: './zkeys/tallyvotes_6-2-3.wasm'
+           subsidy: ''
   SG_DATA: '0x0000000000000000000000000000000000000000000000000000000000000000'
   QUINARY_HASH_LENGTH: 5
   HASH_LENGTH: 2

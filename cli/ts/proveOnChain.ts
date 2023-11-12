@@ -7,7 +7,7 @@ import {
     formatProofForVerifierContract,
     getDefaultSigner,
     parseArtifact,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {
     compareOnChainValue,

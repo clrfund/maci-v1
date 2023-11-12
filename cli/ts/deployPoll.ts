@@ -7,7 +7,7 @@ import {
     deploySubsidy,
     deployContract,
     getDefaultSigner,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {
     PubKey,

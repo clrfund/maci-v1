@@ -1,7 +1,7 @@
 import {
     parseArtifact,
     getDefaultSigner,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {
     validateEthAddress,

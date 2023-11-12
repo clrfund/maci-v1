@@ -5,7 +5,7 @@ import { hash2, hash3, genTreeCommitment } from 'maci-crypto'
 import {
     parseArtifact,
     getDefaultSigner,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {
     compareOnChainValue,

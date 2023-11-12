@@ -10,7 +10,7 @@ import {
     parseArtifact,
     getDefaultSigner,
     genMaciStateFromContract,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {
     promptPwd,

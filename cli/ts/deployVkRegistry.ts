@@ -7,7 +7,7 @@ import {contractFilepath, contractFilepathOld} from './config'
 
 import {
     deployVkRegistry as deployVkRegistryContract,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 const configureSubparser = (subparsers: any) => {
     subparsers.addParser(

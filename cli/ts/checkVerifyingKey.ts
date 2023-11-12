@@ -13,7 +13,7 @@ import {
 import {
     getDefaultSigner,
     parseArtifact,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 
 import { extractVk } from 'maci-circuits'

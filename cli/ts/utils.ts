@@ -8,7 +8,7 @@ import { SNARK_FIELD_SIZE, hash5, IncrementalQuinTree } from 'maci-crypto'
 
 import {
     genJsonRpcDeployer,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 const Web3 = require('web3')
 const { ethers } = require('hardhat')

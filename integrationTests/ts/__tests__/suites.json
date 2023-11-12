@@ -92,6 +92,16 @@
                 "enabled": false,
                 "expectedSubsidy": [117636, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             }
+        },
+        {
+            "name": "Deploy poll by non owner",
+            "description": "Only owner can deploy poll",
+            "numVotesPerUser": 1,
+            "numUsers": 17,
+            "expectedTally": [17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "expectedSpentVoiceCredits": [17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "expectedTotalSpentVoiceCredits": 17,
+            "testDeployPollByNonOwner": true
         }
     ]
 }

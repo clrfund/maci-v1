@@ -1,6 +1,6 @@
 {
-    "name": "maci-cli",
-    "version": "1.1.2",
+    "name": "@clrfund/maci-cli",
+    "version": "1.1.6",
     "description": "CLI utilities for MACI",
     "main": "build/index.js",
     "bin": {
@@ -23,7 +23,7 @@
         "js-yaml": "4.0.0",
         "maci-circuits": "^1.1.2",
         "maci-common": "^1.1.2",
-        "maci-contracts": "^1.1.2",
+        "@clrfund/maci-contracts": "^1.1.6",
         "maci-core": "^1.1.2",
         "maci-crypto": "^1.1.2",
         "maci-domainobjs": "^1.1.2",

@@ -4,7 +4,7 @@ import {
     deployMaci,
     deployVerifier,
     deployTopupCredit as deployTopupCreditContract,
-} from 'maci-contracts'
+} from '@clrfund/maci-contracts'
 
 import {readJSONFile, writeJSONFile} from 'maci-common'
 import {contractFilepath} from './config'
