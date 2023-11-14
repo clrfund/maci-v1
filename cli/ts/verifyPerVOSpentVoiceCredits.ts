@@ -143,8 +143,6 @@ const verifyPerVOSpentVoiceCredits = async (args: any) => {
 
     // ----------------------------------------------
     // verify tally result
-    const onChainTallyCommitment = BigInt(await tallyContract.tallyCommitment())
-    console.log(onChainTallyCommitment.toString(16))
 
     // Read the tally file
     let contents
@@ -195,8 +193,7 @@ const verifyPerVOSpentVoiceCredits = async (args: any) => {
         data.perVOSpentVoiceCredits.salt,
         voteOptionTreeDepth,
         newSpentVoiceCreditsCommitment,
-        newResultsCommitment,
-        onChainTallyCommitment
+        newResultsCommitment
     )
 
     if (!isValid) {
