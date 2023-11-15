@@ -252,8 +252,7 @@ const verify = async (args: any) => {
         data.totalSpentVoiceCredits.spent,
         data.totalSpentVoiceCredits.salt,
         newResultsCommitment,
-        newPerVOSpentVoiceCreditsCommitment,
-        onChainTallyCommitment
+        newPerVOSpentVoiceCreditsCommitment
     )
     if (!isValid) {
         console.error('Failed to verify total spent voice credits on chain')

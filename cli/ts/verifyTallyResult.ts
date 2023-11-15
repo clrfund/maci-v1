@@ -143,9 +143,6 @@ const verifyTallyResult = async (args: any) => {
 
     // ----------------------------------------------
     // verify tally result
-    const onChainTallyCommitment = BigInt(await tallyContract.tallyCommitment())
-    console.log(onChainTallyCommitment.toString(16))
-
     // Read the tally file
     let contents
     try {
@@ -196,8 +193,7 @@ const verifyTallyResult = async (args: any) => {
         data.results.salt,
         voteOptionTreeDepth,
         newSpentVoiceCreditsCommitment,
-        newPerVOSpentVoiceCreditsCommitment,
-        onChainTallyCommitment
+        newPerVOSpentVoiceCreditsCommitment
     )
     if (!isValid) {
         console.error('Failed to verify total spent voice credits on chain')
