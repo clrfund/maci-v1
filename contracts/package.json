@@ -1,5 +1,5 @@
 {
-    "name": "@clrfund/maci-contracts",
+    "name": "maci-contracts",
     "version": "1.1.6",
     "description": "Solidity Smart Contracts for MACI (Minimal Anti-Collusion Infrastructure)",
     "main": "build/index.js",
