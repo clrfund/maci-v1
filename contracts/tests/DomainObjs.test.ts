@@ -1,7 +1,7 @@
 import {
     StateLeaf,
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import { deployPoseidonContracts, linkPoseidonLibraries } from '../'
 import { expect } from 'chai'

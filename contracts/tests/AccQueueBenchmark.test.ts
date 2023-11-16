@@ -2,7 +2,7 @@ require('module-alias/register')
 import {
     AccQueue,
     NOTHING_UP_MY_SLEEVE,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 import { deployPoseidonContracts, linkPoseidonLibraries } from '../'
 import { expect } from 'chai'
 

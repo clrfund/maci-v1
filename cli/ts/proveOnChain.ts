@@ -2,7 +2,7 @@ import * as ethers from 'ethers'
 import * as fs from 'fs'
 import * as path from 'path'
 
-import { hashLeftRight } from 'maci-crypto'
+import { hashLeftRight } from '@clrfund/maci-crypto'
 import {
     formatProofForVerifierContract,
     getDefaultSigner,

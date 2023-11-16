@@ -1,6 +1,6 @@
 import { deployVerifier } from '../'
-import { G1Point, G2Point } from 'maci-crypto'
-import { VerifyingKey } from 'maci-domainobjs'
+import { G1Point, G2Point } from '@clrfund/maci-crypto'
+import { VerifyingKey } from '@clrfund/maci-domainobjs'
 import { expect } from 'chai'
 
 const vk = new VerifyingKey(

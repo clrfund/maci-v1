@@ -2,7 +2,7 @@ import {
     Keypair,
     PubKey,
     Message,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     parseArtifact,
@@ -10,7 +10,7 @@ import {
 
 import {
     MaciState,
-} from 'maci-core'
+} from '@clrfund/maci-core'
 
 import { Contract, providers, utils } from 'ethers'
 // import { assert } from 'assert'

@@ -13,7 +13,7 @@ import {
     genKeypair,
     unpackPubKey,
     genRandomSalt,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 describe('Domain objects', () => {
     const { privKey, pubKey } = new Keypair()

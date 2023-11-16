@@ -1,7 +1,7 @@
-import { stringifyBigInts } from 'maci-crypto'
+import { stringifyBigInts } from '@clrfund/maci-crypto'
 import {
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 import * as path from 'path'
 const tester = require("circom_tester").wasm;
 import { getSignal } from './utils';

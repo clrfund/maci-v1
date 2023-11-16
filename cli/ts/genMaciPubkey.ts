@@ -1,11 +1,11 @@
 import {
     PubKey,
     PrivKey,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     genPubKey,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 const configureSubparser = (subparsers: any) => {
     const genMaciPubkeyParser = subparsers.addParser(

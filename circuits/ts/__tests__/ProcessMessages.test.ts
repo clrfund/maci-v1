@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import {
     MaciState,
     STATE_TREE_DEPTH,
-} from 'maci-core'
+} from '@clrfund/maci-core'
 
 import {
     PrivKey,
@@ -11,14 +11,14 @@ import {
     PCommand,
     Message,
     Ballot,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     hash5,
     IncrementalQuinTree,
     stringifyBigInts,
     NOTHING_UP_MY_SLEEVE,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import { 
     getSignal,

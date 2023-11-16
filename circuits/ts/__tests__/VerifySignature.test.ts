@@ -2,12 +2,12 @@ import {
     stringifyBigInts,
     verifySignature,
     hash4,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import {
     Keypair,
     PCommand,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import { 
     getSignal,

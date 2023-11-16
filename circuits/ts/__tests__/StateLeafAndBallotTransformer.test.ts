@@ -5,12 +5,12 @@ import {
 import { 
     stringifyBigInts,
     genRandomSalt,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import {
     PCommand,
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import * as path from 'path'
 import { expect } from 'chai'

@@ -6,7 +6,7 @@ import {
     NOTHING_UP_MY_SLEEVE,
     hash2,
     hash5,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 import { deployPoseidonContracts, linkPoseidonLibraries } from '../ts/'
 import { expect } from "chai";
 

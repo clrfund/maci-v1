@@ -5,7 +5,7 @@ import {
 import {
     PCommand,
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 const tester = require("circom_tester").wasm
 
 import {
@@ -17,7 +17,7 @@ import {
     hash5,
     hash4,
     hash3,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 import * as path from 'path'
 import { expect } from 'chai'
 

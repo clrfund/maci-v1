@@ -10,7 +10,7 @@ import {
 
 import {
     PubKey,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {contractExists} from './utils'
 import {readJSONFile, writeJSONFile} from 'maci-common'

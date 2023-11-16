@@ -4,7 +4,7 @@ import * as prompt from 'prompt-async'
 prompt.colors = false
 prompt.message = ''
 
-import { SNARK_FIELD_SIZE, hash5, IncrementalQuinTree } from 'maci-crypto'
+import { SNARK_FIELD_SIZE, hash5, IncrementalQuinTree } from '@clrfund/maci-crypto'
 
 import {
     genJsonRpcDeployer,

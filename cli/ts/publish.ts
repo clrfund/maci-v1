@@ -8,11 +8,11 @@ import {
     PrivKey,
     Keypair,
     PCommand,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     genRandomSalt,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import {
     promptPwd,

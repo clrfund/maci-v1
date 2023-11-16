@@ -1,10 +1,10 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
-import { IncrementalQuinTree, hash5 } from 'maci-crypto'
+import { IncrementalQuinTree, hash5 } from '@clrfund/maci-crypto'
 import {
     Ballot,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 const genEmptyBallotRootsContract = (
 ): string => {

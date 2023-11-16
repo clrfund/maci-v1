@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 
-import { hash2, hash3, genTreeCommitment } from 'maci-crypto'
+import { hash2, hash3, genTreeCommitment } from '@clrfund/maci-crypto'
 
 import {
     parseArtifact,

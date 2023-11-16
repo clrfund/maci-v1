@@ -5,19 +5,19 @@ import {
 import {
     MaciState,
     STATE_TREE_DEPTH,
-} from 'maci-core'
+} from '@clrfund/maci-core'
 
 import {
     Keypair,
     PCommand,
     Message,
     VerifyingKey,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     G1Point,
     G2Point,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import * as path from 'path'
 import { expect } from 'chai'

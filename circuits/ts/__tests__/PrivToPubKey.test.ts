@@ -1,8 +1,8 @@
 import {
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
-import { stringifyBigInts } from 'maci-crypto'
+import { stringifyBigInts } from '@clrfund/maci-crypto'
 
 import { 
     getSignal,

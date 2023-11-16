@@ -5,7 +5,7 @@ import {
 
 import {
     PubKey,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 
 import {

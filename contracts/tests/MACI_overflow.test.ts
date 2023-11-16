@@ -3,12 +3,12 @@ import { parseArtifact, getDefaultSigner } from '../ts/deploy'
 import { deployTestContracts } from '../ts/utils'
 import {
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 import { expect } from 'chai'
 import {
     MaxValues,
     TreeDepths,
-} from 'maci-core'
+} from '@clrfund/maci-core'
 
 const coordinator = new Keypair()
 const users = [
@@ -17,7 +17,7 @@ const users = [
     new Keypair(),
 ]
 
-const STATE_TREE_DEPTH = 10
+const STATE_TREE_DEPTH = 6
 const STATE_TREE_ARITY = 5
 const MESSAGE_TREE_DEPTH = 4
 const MESSAGE_TREE_SUBDEPTH = 2

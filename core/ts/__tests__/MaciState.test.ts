@@ -9,7 +9,7 @@ import {
     Keypair,
     VerifyingKey,
     StateLeaf,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     hash5,
@@ -17,7 +17,7 @@ import {
     G2Point,
     NOTHING_UP_MY_SLEEVE,
     IncrementalQuinTree,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 const voiceCreditBalance = BigInt(100)
 

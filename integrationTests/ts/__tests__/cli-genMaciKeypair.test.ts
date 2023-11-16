@@ -1,11 +1,11 @@
 import {
     PubKey,
     PrivKey,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     genPubKey,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import { exec } from './utils'
 

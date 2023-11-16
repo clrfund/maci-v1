@@ -6,7 +6,7 @@ import {
     sha256Hash,
     hashLeftRight,
     hash5,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 const genZerosContract = (
     contractName: string,

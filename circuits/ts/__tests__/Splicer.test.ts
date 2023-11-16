@@ -4,7 +4,7 @@ import {
 
 import { 
     stringifyBigInts,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 import * as path from 'path'
 import { expect } from 'chai'
 const tester = require("circom_tester").wasm

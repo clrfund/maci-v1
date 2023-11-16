@@ -2,13 +2,13 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 
-import { PubKey, PrivKey, Keypair, PCommand } from 'maci-domainobjs'
+import { PubKey, PrivKey, Keypair, PCommand } from '@clrfund/maci-domainobjs'
 
-import { MaciState, TreeDepths, MaxValues } from 'maci-core'
+import { MaciState, TreeDepths, MaxValues } from '@clrfund/maci-core'
 
-import { genRandomSalt } from 'maci-crypto'
+import { genRandomSalt } from '@clrfund/maci-crypto'
 
-import { genPubKey } from 'maci-crypto'
+import { genPubKey } from '@clrfund/maci-crypto'
 
 import {
     exec,

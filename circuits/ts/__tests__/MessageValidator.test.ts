@@ -1,12 +1,12 @@
 import { 
     stringifyBigInts,
     genRandomSalt,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import {
     PCommand,
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 import { 
     getSignal,
 } from './utils'

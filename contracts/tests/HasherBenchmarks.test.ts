@@ -1,7 +1,7 @@
 require('module-alias/register')
 import {
     genRandomSalt,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 
 import { deployPoseidonContracts } from '../ts/deploy'
 import { linkPoseidonLibraries } from '../'

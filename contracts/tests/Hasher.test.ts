@@ -6,7 +6,7 @@ import {
     hash4,
     hash5,
     genRandomSalt,
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 import { expect } from 'chai'
 import { deployPoseidonContracts, linkPoseidonLibraries } from '../'
 

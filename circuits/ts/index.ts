@@ -5,7 +5,7 @@ import * as tmp from 'tmp'
 import * as os from 'os'
 import { zKey, groth16 } from 'snarkjs'
 
-import { stringifyBigInts } from 'maci-crypto'
+import { stringifyBigInts } from '@clrfund/maci-crypto'
 
 /*
  * https://github.com/iden3/snarkjs/issues/152

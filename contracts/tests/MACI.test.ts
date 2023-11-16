@@ -8,19 +8,19 @@ import {
     Keypair,
     PubKey,
     Message,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 import {
     MaciState,
     genProcessVkSig,
     MaxValues,
     TreeDepths,
-} from 'maci-core'
+} from '@clrfund/maci-core'
 import { expect } from 'chai'
 
-import { G1Point, G2Point, NOTHING_UP_MY_SLEEVE } from 'maci-crypto'
+import { G1Point, G2Point, NOTHING_UP_MY_SLEEVE } from '@clrfund/maci-crypto'
 
-const STATE_TREE_DEPTH = 10
+const STATE_TREE_DEPTH = 6
 const STATE_TREE_ARITY = 5
 const MESSAGE_TREE_DEPTH = 4
 const MESSAGE_TREE_SUBDEPTH = 2

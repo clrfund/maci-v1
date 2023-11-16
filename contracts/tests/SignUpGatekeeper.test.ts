@@ -2,7 +2,7 @@ import { getDefaultSigner, deploySignupToken, deploySignupTokenGatekeeper, deplo
 import { deployTestContracts } from '../ts/utils'
 import {
     Keypair,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 import { expect } from 'chai'
 import { utils } from 'ethers'
 

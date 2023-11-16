@@ -11,7 +11,7 @@ import {
     sha256Hash,
     stringifyBigInts,
     genTreeCommitment
-} from 'maci-crypto'
+} from '@clrfund/maci-crypto'
 import {
     PubKey,
     VerifyingKey,
@@ -22,7 +22,7 @@ import {
     Keypair,
     StateLeaf,
     Ballot,
-} from 'maci-domainobjs'
+} from '@clrfund/maci-domainobjs'
 
 interface TreeDepths {
     intStateTreeDepth: number;
