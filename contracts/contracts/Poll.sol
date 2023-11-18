@@ -50,7 +50,7 @@ contract PollFactory is
         IMACI _maci,
         TopupCredit _topupCredit,
         address _pollOwner
-    ) public onlyOwner returns (Poll) {
+    ) public returns (Poll) {
         uint256 treeArity = 5;
 
         // Validate _maxValues
