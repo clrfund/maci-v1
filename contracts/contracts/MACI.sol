@@ -118,7 +118,6 @@ contract MACI is IMACI, DomainObjs, Params, SnarkCommon, Ownable {
     error CallerMustBePoll(address _caller);
     error AlreadyInitialized();
     error PoseidonHashLibrariesNotLinked();
-    error WrongPollOwner();
     error WrongVkRegistryOwner();
     error TooManySignups();
     error MaciPubKeyLargerThanSnarkFieldSize();
@@ -163,7 +162,6 @@ contract MACI is IMACI, DomainObjs, Params, SnarkCommon, Ownable {
 
         // Check that the factory contracts have correct access controls before
         // allowing any functions in MACI to run (via the afterInit modifier)
-        if (pollFactory.owner() != address(this)) revert WrongPollOwner();
         if (vkRegistry.owner() != owner()) revert WrongVkRegistryOwner();
 
         emit Init(_vkRegistry, _topupCredit);
