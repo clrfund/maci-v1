@@ -373,16 +373,12 @@ const executeSuite = async (data: any, expect: any) => {
             if (data.expectedTally[i] > 0) {
                 const verifyResultCommand =
                     `node build/index.js verifyTallyResult` +
-                    ` -x ${maciAddress}` +
-                    ` -o ${pollId}` +
                     ` -v ${i}` +
                     ` -t tally.json`
                 execute(verifyResultCommand)
 
                 const verifyVoiceCreditsCommand =
                     `node build/index.js verifyPerVOSpentVoiceCredits` +
-                    ` -x ${maciAddress}` +
-                    ` -o ${pollId}` +
                     ` -v ${i}` +
                     ` -t tally.json`
                 execute(verifyVoiceCreditsCommand)

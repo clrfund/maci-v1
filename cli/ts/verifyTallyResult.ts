@@ -32,24 +32,6 @@ const configureSubparser = (subparsers: any) => {
     )
 
     parser.addArgument(
-        ['-x', '--contract'],
-        {
-            type: 'string',
-            help: 'The MACI contract address',
-        }
-    )
-
-    parser.addArgument(
-        ['-o', '--poll-id'],
-        {
-            action: 'store',
-            required: true,
-            type: 'string',
-            help: 'The Poll ID',
-        }
-    )
-
-    parser.addArgument(
         ['-tc', '--tally-contract'],
         {
             type: 'string',
@@ -72,42 +54,59 @@ const configureSubparser = (subparsers: any) => {
 const verifyTallyResult = async (args: any) => {
     const signer = await getDefaultSigner()
 
-    const pollId = Number(args.poll_id)
+    // Vote option index
+    const voteOptionIndex = Number(args.vote_option_index)
+    if (voteOptionIndex < 0) {
+        throw new Error('Error: the vote option index should be 0 or greater')
+    }
 
-    // check existence of MACI, Tally and Subsidy contract addresses
+    // Read the tally file
+    let contents
+    try {
+        contents = fs.readFileSync(args.tally_file, { encoding: 'utf8' })
+    } catch {
+        throw new Error(`Error: unable to open ${args.tally_file}`)
+    }
+
+    // Parse the tally file
+    let data
+    try {
+        data = JSON.parse(contents)
+    } catch {
+        throw new Error(`Error: unable to parse ${args.tally_file}`)
+    }
+
+    const maciAddress = data.maci
+    const pollId = Number(data.pollId)
+
+    if (!maciAddress) {
+        throw new Error('Error: MACI contract address is empty')
+    }
+
     let contractAddrs = readJSONFile(contractFilepath)
-    if ((!contractAddrs||!contractAddrs["MACI"]) && !args.contract) {
-        console.error('Error: MACI contract address is empty') 
-        return 
-    }
     if ((!contractAddrs||!contractAddrs["Tally-"+pollId]) && !args.tally_contract) {
-        console.error('Error: Tally contract address is empty') 
-        return 
+        throw new Error('Error: Tally contract address is empty')
     }
-
-    const maciAddress = args.contract ? args.contract: contractAddrs["MACI"]
     const tallyAddress = args.tally_contract? args.tally_contract: contractAddrs["Tally-"+pollId]
 
     // MACI contract
     if (!validateEthAddress(maciAddress)) {
-        console.error('Error: invalid MACI contract address')
-        return 
+        throw new Error('Error: invalid MACI contract address')
     }
 
     // Tally contract
     if (!validateEthAddress(tallyAddress)) {
-        console.error('Error: invalid Tally contract address')
-        return 
+        throw new Error('Error: invalid Tally contract address')
+    }
+
+    // check existence of MACI, Tally and Subsidy contract addresses
+    if (! (await contractExists(signer.provider, tallyAddress))) {
+        throw new Error(`Error: there is no contract deployed at ${tallyAddress}.`)
     }
 
     const [ maciContractAbi ] = parseArtifact('MACI')
     const [ pollContractAbi ] = parseArtifact('Poll')
     const [ tallyContractAbi ] = parseArtifact('Tally')
-
-    if (! (await contractExists(signer.provider, tallyAddress))) {
-        console.error(`Error: there is no contract deployed at ${tallyAddress}.`)
-        return 
-    }
 
     const maciContract = new ethers.Contract(
         maciAddress,
@@ -117,17 +116,8 @@ const verifyTallyResult = async (args: any) => {
 
     const pollAddr = await maciContract.polls(pollId)
     if (!(await contractExists(signer.provider, pollAddr))) {
-        console.error('Error: there is no Poll contract with this poll ID linked to the specified MACI contract.')
-        return 
+        throw new Error('Error: there is no Poll contract with this poll ID linked to the specified MACI contract.')
     }
-
-    // Vote option index
-    const voteOptionIndex = Number(args.vote_option_index)
-    if (voteOptionIndex < 0) {
-        console.error('Error: the vote option index should be 0 or greater')
-        return
-    }
-
 
     const pollContract = new ethers.Contract(
         pollAddr,
@@ -141,26 +131,9 @@ const verifyTallyResult = async (args: any) => {
         signer,
     )
 
+
     // ----------------------------------------------
     // verify tally result
-    // Read the tally file
-    let contents
-    try {
-        contents = fs.readFileSync(args.tally_file, { encoding: 'utf8' })
-    } catch {
-        console.error('Error: unable to open ', args.tally_file)
-        return 
-    }
-
-    // Parse the tally file
-    let data
-    try {
-        data = JSON.parse(contents)
-    } catch {
-        console.error('Error: unable to parse ', args.tally_file)
-        return 
-    }
-
     const treeDepths = await pollContract.treeDepths()
     const voteOptionTreeDepth = Number(treeDepths.voteOptionTreeDepth)
 
@@ -196,13 +169,10 @@ const verifyTallyResult = async (args: any) => {
         newPerVOSpentVoiceCreditsCommitment
     )
     if (!isValid) {
-        console.error('Failed to verify total spent voice credits on chain')
-        return
+        throw new Error('Failed to verify total spent voice credits on chain')
     }
 
     console.log('OK. finish verifyTallyResult')
-
-    return 
 }
 
 export {
