@@ -2,7 +2,7 @@ import * as ethers from 'ethers'
 import * as fs from 'fs'
 import * as path from 'path'
 
-import { genProof, verifyProof, extractVk } from '@clrfund/maci-circuits'
+import { cleanThreads, genProof, verifyProof, extractVk } from '@clrfund/maci-circuits'
 import { hashLeftRight, hash3, genTreeCommitment } from '@clrfund/maci-crypto'
 import { PrivKey, Keypair, VerifyingKey } from '@clrfund/maci-domainobjs'
 
@@ -182,9 +182,22 @@ const configureSubparser = (subparsers: any) => {
             help: 'transaction hash of MACI contract creation',
         }
     )
+
+    parser.addArgument(
+        ['-c', '--cleanup'],
+        {
+            action: 'storeTrue',
+            help: 'Cleanup snarkjs threads',
+        }
+    )
 }
 
-const genProofs = async (args: any) => {
+const doGenProofs = async (args: any) => {
+    // tell extractVk() to not cleanup threads to avoid
+    // prematurelly exit when running hardhat scripts
+    // Caller will cleanup the threads later or at end
+    // the end of this function
+    const cleanOnReturn = false
     const outputDir = args.output
 
     if (!fs.existsSync(outputDir)) {
@@ -275,12 +288,12 @@ const genProofs = async (args: any) => {
             }
         }       
 
-        subsidyVk = await extractVk(args.subsidy_zkey)
+        subsidyVk = await extractVk(args.subsidy_zkey, cleanOnReturn)
     }
 
     // Extract the verifying keys
-    const processVk = await extractVk(args.process_zkey)
-    const tallyVk = await extractVk(args.tally_zkey)
+    const processVk = await extractVk(args.process_zkey, cleanOnReturn)
+    const tallyVk = await extractVk(args.tally_zkey, cleanOnReturn)
 
     // The coordinator's MACI private key
     let serializedPrivkey
@@ -442,6 +455,7 @@ const genProofs = async (args: any) => {
             r.publicSignals,
             r.proof,
             processVk,
+            cleanOnReturn
         )
 
         if (!isValid) {
@@ -484,7 +498,7 @@ const genProofs = async (args: any) => {
             subsidyCircuitInputs = poll.subsidyPerBatch()
             const r = await genProof(subsidyCircuitInputs, args.subsidy_zkey, rapidsnarkExe, args.subsidy_witnessgen, args.subsidy_wasm)
     
-            const isValid = await verifyProof(r.publicSignals, r.proof, subsidyVk)
+            const isValid = await verifyProof(r.publicSignals, r.proof, subsidyVk, cleanOnReturn)
             if (!isValid) {
                 console.error('Error: generated an invalid subsidy calc proof')
                 return 
@@ -550,6 +564,7 @@ const genProofs = async (args: any) => {
             r.publicSignals,
             r.proof,
             tallyVk,
+            cleanOnReturn
         )
 
         if (!isValid) {
@@ -639,6 +654,16 @@ const saveOutput = (
         path.join(outputDir, filename),
         JSON.stringify(proof, null, 2),
     )
+}
+
+const genProofs = async (args: any) => {
+    try {
+        await doGenProofs(args)
+    } finally {
+        if (args.cleanup) {
+            cleanThreads()
+        }
+    }
 }
 
 export {

@@ -91,15 +91,19 @@ const genProof = async (
     return { proof, publicSignals }
 }
 
-const verifyProof = async (publicInputs: any, proof: any, vk: any) => {
+const verifyProof = async (publicInputs: any, proof: any, vk: any, cleanup = true) => {
     const isValid = await groth16.verify(vk, publicInputs, proof)
-    await cleanThreads()
+    if (cleanup) {
+        await cleanThreads()
+    }
     return isValid
 }
 
-const extractVk = async (zkeyPath: string) => {
+const extractVk = async (zkeyPath: string, cleanup = true) => {
     const vk = await zKey.exportVerificationKey(zkeyPath)
-    await cleanThreads()
+    if (cleanup) {
+        await cleanThreads()
+    }
     return vk
 }
 
@@ -111,4 +115,4 @@ const isArm = (): boolean => {
     return os.arch().includes('arm')
 }
 
-export { genProof, verifyProof, extractVk }
+export { genProof, verifyProof, extractVk, cleanThreads }
